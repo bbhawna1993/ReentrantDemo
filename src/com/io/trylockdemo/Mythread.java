@@ -13,13 +13,12 @@ public class Mythread extends Thread{
 		if(l.tryLock())
 		{System.out.println(Thread.currentThread().getName()+"\n"+"Performing safe operationss...");
 		try {
-			Thread.sleep(10000);
+			Thread.sleep(1000);
 		} catch (InterruptedException e) {}
+		l.unlock();
 		}
 		else
-		{System.out.println("can't get"+Thread.currentThread().getName());}
-		l.unlock();
-
+		{System.out.println("can't get the lock"+"\n"+Thread.currentThread().getName());}
 
 	}
 }
