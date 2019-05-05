@@ -1,5 +1,6 @@
 package com.io.trylockdemo;
 
+import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.ReentrantLock;
 
 public class Mythread extends Thread{
@@ -10,15 +11,20 @@ public class Mythread extends Thread{
 
 	public void run()
 	{
-		if(l.tryLock())
-		{System.out.println(Thread.currentThread().getName()+"\n"+"Performing safe operationss...");
 		try {
-			Thread.sleep(1000);
-		} catch (InterruptedException e) {}
-		l.unlock();
+			if(l.tryLock(3000,TimeUnit.MILLISECONDS))
+			{System.out.println(Thread.currentThread().getName()+"\n"+"Performing safe operationss...");
+			try {
+				Thread.sleep(2000);
+			} catch (InterruptedException e) {}
+			l.unlock();
+			}
+			else
+			{System.out.println("can't get the lock"+"\n"+Thread.currentThread().getName());}
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-		else
-		{System.out.println("can't get the lock"+"\n"+Thread.currentThread().getName());}
 
 	}
 }
