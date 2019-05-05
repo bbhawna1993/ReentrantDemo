@@ -11,11 +11,15 @@ public class Mythread extends Thread{
 	public void run()
 	{
 		if(l.tryLock())
-		{System.out.println(Thread.currentThread().getName()+"\n"+"Performing safe operationss...");}
+		{System.out.println(Thread.currentThread().getName()+"\n"+"Performing safe operationss...");
 		try {
 			Thread.sleep(10000);
 		} catch (InterruptedException e) {}
+		}
+		else
+		{System.out.println("can't get"+Thread.currentThread().getName());}
 		l.unlock();
+
 
 	}
 }
