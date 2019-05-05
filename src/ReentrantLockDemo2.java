@@ -16,6 +16,8 @@ public class ReentrantLockDemo2 {
 		l.unlock();
 
 		System.out.println(l.getHoldCount());
+		System.out.println(l.isLocked());
+		System.out.println(l.isFair());
 	}
 
 }
