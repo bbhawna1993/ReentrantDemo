@@ -5,8 +5,9 @@ import java.util.concurrent.locks.ReentrantLock;
 class Display {
 
 	ReentrantLock l=new ReentrantLock();
-
-	public void wish(String name) {
+	//this method is synchronized.
+	//public synchronized  void wish(String name)
+	public synchronized  void wish(String name) {
 		l.lock();
 		for(int i=0;i<10;i++)
 		{
